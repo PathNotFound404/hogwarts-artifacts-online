@@ -30,6 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @DisplayName("Integration tests for Wizard API endpoints")
 @Tag("integration")
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 class WizardControllerIntegrationTest {
 
     @Autowired
@@ -55,7 +56,6 @@ class WizardControllerIntegrationTest {
 
     @Test
     @DisplayName("Check findAllWizards (GET)")
-    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD) // Reset H2 database before calling this test case.
     void testFindAllWizardsSuccess() throws Exception {
         this.mockMvc.perform(get(this.baseUrl + "/wizards").accept(MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, this.token))
                 .andExpect(jsonPath("$.flag").value(true))
@@ -87,7 +87,6 @@ class WizardControllerIntegrationTest {
 
     @Test
     @DisplayName("Check addWizard with valid input (POST)")
-    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     void testAddWizardSuccess() throws Exception {
         Wizard a = new Wizard();
         a.setName("Hermione Granger");
@@ -109,7 +108,6 @@ class WizardControllerIntegrationTest {
 
     @Test
     @DisplayName("Check addWizard with invalid input (POST)")
-    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     void testAddWizardErrorWithInvalidInput() throws Exception {
         Wizard a = new Wizard();
         a.setName(""); // Name is not provided.
