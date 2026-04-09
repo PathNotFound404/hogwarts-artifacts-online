@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: prod # By default the active profile is dev during deployment it will be replaced to prod due to azure environment vars
+    active: dev # By default the active profile is dev during deployment it will be replaced to prod due to azure environment vars
   web:
     resources:
       add-mappings: false
