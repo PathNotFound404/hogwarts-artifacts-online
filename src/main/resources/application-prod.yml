@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    azure:
+      keyvault:
+        secret:
+          property-sources[0]:
+            endpoint: ${AZURE_KEYVAULT_ENDPOINT} # Environment Variable
+  datasource:
+    url: ${datasource-url} #Secrets form azure key vault
+    username: ${datasource-username} #Secrets form azure key vault
+    password: ${datasource-password} #Secrets form azure key vault
+  jpa:
+    hibernate:
+      ddl-auto: none # Turn off the DDL auto generation
