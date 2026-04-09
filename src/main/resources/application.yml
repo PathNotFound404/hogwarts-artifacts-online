@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: dev # By default the active profile is dev during deployment it will be replaced to prod due to azure environment vars
+  web:
+    resources:
+      add-mappings: false
+api:
+  endpoint:
+    base-url: /api/v1
+server:
+  port: 80
